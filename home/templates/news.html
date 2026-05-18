@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- main style -->
+    <link rel="stylesheet" href="../static/news.css">
+    <!-- font style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <!-- font awosome style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <title>News</title>
+</head>
+
+<body>
+    <aside id="sidebar">
+        <div class="himg">
+            <a href="{% url 'home' %}"><img src="../static/image/nimage/h3.png" alt=""></a>
+        </div>
+        <div class="hcatagory">
+            <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
+            <a href="{% url 'news' %}" class="ch"><i class="fa-solid fa-newspaper"></i>News</a>
+            <!-- <a href="{% url 'list' %}"><i class="fa-solid fa-list"></i>List</a> -->
+            <a href="{% url 'gaming' %}"><i class="fa-solid fa-gamepad"></i>Gaming</a>
+            <a href="{% url 'tech' %}"><i class="fa-solid fa-microchip"></i>Tech</a>
+            <a href="{% url 'cinema' %}"><i class="fa-solid fa-clapperboard"></i>Cinema</a>
+            <a href="{% url 'animng' %}"><i class="fa-solid fa-dragon"></i>Anime and Manga</a>
+            <a href="{% url 'science' %}"><i class="fa-solid fa-flask"></i>Science</a>
+            <a href="{% url 'comic' %}"><i class="fa-solid fa-book-open"></i>Comics</a>
+        </div>
+        <div class="serch">
+            <form method="GET" action="{% url 'search' %}">
+                <input type="text" name="q" placeholder="Search..." value="{{query}}" required>
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+        <div class="lgrg">
+            <a href="" class="lg">Login</a>
+            <a href="" class="rg">Register</a>
+        </div>
+    </aside>
+    <a href="javascript:void(0);" class="bar" id="toggleBtn"><i class="fa-solid fa-chevron-right"></i></a>
+    <main>
+
+        <section class="mnav">
+            <a href="{% url 'home' %}" class="nimg"><img src="../static/image/nimage/h3.png" alt="home"></a>
+        </section>
+
+        <section class="newst">
+            <div class="newstl">
+                <div class="ntl-heding">
+                    <h2>News</h2>
+                </div>
+                <div class="ntl-img">
+                    <a href="{% url 'detail' live_news.nid %}"><img src="{{ live_news.image }}" alt=""></a>
+                </div>
+            </div>
+            <div class="newstr">
+                <div class="ntr-heding">
+                    <h2>Popular</h2>
+                </div>
+                <div class="ntr-pnews">
+                    <div class="pnw1">
+                        <div class="pnw1-l">
+                            01
+                        </div>
+                        <div class="pnw1-r">
+                            <p>{{ live_news.time|timesince }}</p>
+                            <a href="{% url 'detail' live_news.nid %}"><h2>{{ live_news.title }}</h2></a>
+                        </div>
+                    </div>
+                    {% for i in highlights %}
+                    <div class="pnw2">
+                        <div class="pnw2-l">
+                            {{ forloop.counter|add:"1" }}
+                        </div>
+                        <div class="pnw2-r">
+                            <p>{{ i.time|timesince }}</p>
+                            <a href="{% url 'detail' i.nid %}"><h2>{{ i.title }}</h2></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class="let-news">
+            <div class="ltne-heding">
+                <h2>Latest <span>News</span></h2>
+            </div>
+
+            <!-- Categories -->
+            <div class="ltne-category">
+                <a href="?category=all" class="{% if category == 'all' %}active{% endif %}">All</a>
+                <a href="?category=gaming" class="{% if category == 'gaming' %}active{% endif %}">Gaming</a>
+                <a href="?category=cinema" class="{% if category == 'cinema' %}active{% endif %}">Cinema</a>
+
+                <a href="?category=comic" class="{% if category == 'comic' %}active{% endif %}">Comics</a>
+                <a href="?category=tech" class="{% if category == 'tech' %}active{% endif %}">Tech</a>
+                <a href="?category=sciences" class="{% if category == 'sciences' %}active{% endif %}">Science</a>
+            </div>
+
+            <!-- News Cards -->
+             <div class="newn">
+
+                 {% for i in latest %}
+                 <div class="newn-card">
+                     <div class="newnc-img">
+                         <img src="{{ i.image }}" alt="">
+                     </div>
+                     <div class="newnc-text">
+                         <a href="{% url 'detail' i.nid %}"><h2>{{ i.title }}</h2></a>
+                         <a href="{% url 'detail' i.nid %}"><p>{{ i.time|timesince }} ago - {{ i.description }}</p></a>
+                         <span><i class="fa-solid fa-user"></i>{{ i.author|default:"Unknown" }}</span>
+                     </div>
+                 </div>
+                 {% empty %}
+                 <p>No news found for this category.</p>
+                 {% endfor %}
+                 
+             </div>
+        </section>
+
+    </main>
+
+    <script>
+        const sidebar = document.getElementById("sidebar");
+        const toggleBtn = document.getElementById("toggleBtn");
+        const icon = toggleBtn.querySelector("i");
+
+        toggleBtn.addEventListener("click", () => {
+            // Toggle between showing and hiding on mobile
+            sidebar.classList.toggle("hidden");
+
+            if (sidebar.classList.contains("hidden")) {
+                icon.classList.remove("fa-chevron-right");
+                icon.classList.add("fa-chevron-left");
+            } else {
+                icon.classList.remove("fa-chevron-left");
+                icon.classList.add("fa-chevron-right");
+            }
+        });
+    </script>
+</body>
+
+</html>

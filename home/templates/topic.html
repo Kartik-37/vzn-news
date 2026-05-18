@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- main style -->
+    <link rel="stylesheet" href="../static/topic.css">
+    <!-- font style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <!-- font awosome style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <title>VZN</title>
+</head>
+
+<body>
+    <aside>
+        <div class="himg">
+            <a href="{% url 'home' %}"><img src="../static/image/nimage/h3.png" alt=""></a>
+        </div>
+        <div class="hcatagory">
+            <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
+            <a href="{% url 'news' %}"><i class="fa-solid fa-newspaper"></i>News</a>
+            <!-- <a href="{% url 'list' %}"><i class="fa-solid fa-list"></i>List</a> -->
+            <a href="{% url 'gaming' %}"><i class="fa-solid fa-gamepad"></i>Gaming</a>
+            <a href="{% url 'tech' %}"><i class="fa-solid fa-microchip"></i>Tech</a>
+            <a href="{% url 'cinema' %}"><i class="fa-solid fa-clapperboard"></i>Cinema</a>
+            <a href="{% url 'animng' %}"><i class="fa-solid fa-dragon"></i>Anime and Manga</a>
+            <a href="{% url 'science' %}"><i class="fa-solid fa-flask"></i>Science</a>
+            <a href="{% url 'comic' %}"><i class="fa-solid fa-book-open"></i>Comics</a>
+        </div>
+        <div class="serch">
+            <form method="GET" action="{% url 'search' %}">
+                <input type="text" name="q" placeholder="Search..." value="{{query}}" required>
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+        <div class="lgrg">
+            <a href="" class="lg">Login</a>
+            <a href="" class="rg">Register</a>
+        </div>
+    </aside>
+
+    <main>
+
+        <section class="mheader">
+            <div class="bg-img">
+                <div class="bg-blur">
+                    <div class="bg-wave">
+                        <svg width="5760" height="48" fill="none" xmlns="http://www.w3.org/2000/svg" class="wave-1">
+                            <path
+                                d="M5760 20.965l-39.97-4.1c-39.96-4.224-121.36-12.24-198.36-11.839-81.77.524-161.34 9.773-242.01 11.838-79.56 1.943-161.33-2.99-238.33-4.624-81.4-1.449-161.34.401-242 .493-79.2-.092-157.67-1.942-238.34-4.624-81.03-2.559-161.33-5.642-242-3.576-78.83 1.942-157.67 9.341-238.33 10.266-80.67.925-161.34-4.008-242-7.183-78.84-2.99-157.67-4.224-238.34-5.149-80.3-.924-161.33-2.158-242-1.017-78.47 1.017-157.67 4.1-238.34 5.118-79.93 1.14-161.33-.093-238.33 1.541-81.77 1.45-161.33 5.765-242 7.214-79.57 1.634-161.34.4-238.34 1.541-81.4 1.018-161.33 4.1-242 1.018-79.2-3.083-157.67-12.332-238.33-15.415-81.04-3.082-161.34 0-242 4.625-78.84 4.624-157.67 10.79-238.34 10.266-80.67-.401-161.33-7.8-242-12.332C1119.81.31 1040.97-1.54 960.306 1.45c-80.301 3.175-161.335 11.191-242.002 13.873-78.467 2.559-157.667-.524-238.334-2.066-79.934-1.54-161.335-1.54-238.335-1.54H0V48H5760V20.965z"
+                                class="jsx-1501616488" fill="#ffffff"></path>
+                        </svg>
+                        <svg width="5760" height="76" fill="none" xmlns="http://www.w3.org/2000/svg" class="wave-2">
+                            <path
+                                d="M39.9669 12.872 0 9.51309V76h5760V36.3846l-39.97 3.3589c-40.33 3.359-134.76-15.0855-216.53-11.7266-77 3.359-143.54 28.5213-223.47 21.8034-80.67-6.7178-159.87-20.1536-238.33-26.8715-80.67-6.7178-161.71-6.7178-242.01-5.5758-80.66.8733-159.5 3.5605-238.33 1.0749-80.67-2.2169-161.33-8.93481-242-13.43578-80.67-4.232267-159.5-6.91942-238.34-3.35894-80.66 3.1574-160.96 12.56242-242 17.93672-80.67 5.3743-159.13 8.0615-238.33 4.501-80.67-3.1574-160.6-12.5624-242-7.8599-77 4.7025-158.77 22.169-238.34 25.7294-80.67 3.1574-160.23-7.5912-242-12.2937-77-4.7025-158.4-2.0153-238.33-2.2169-80.67.2016-159.87-2.4856-238.34 2.2169-80.67 4.7025-161.7 15.4511-242 20.1536-80.67 4.7026-159.5 2.0154-238.34-4.5009-80.66-6.9194-161.33-17.668-242-19.0116-80.66-1.3436-159.5 8.0614-238.33 5.5758-80.67-2.2169-160.97-15.6526-242-21.2285-80.67-5.84452-159.14-3.15737-238.338 4.4338-80.667 7.8599-160.601 21.2957-242.001 21.2957-77.001 0-158.768-13.4358-238.335-16.7947-80.667-3.3589-160.234 3.3589-242.001 3.3589-77.001 0-158.4012-6.7178-198.3681-10.0768Z"
+                                class="jsx-1501616488" fill="#ffffff"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="hmain-box">
+                <div class="hmb-img">
+                    <img src="../static/image/gametopic.webp" alt="">
+                </div>
+                <div class="hmb-text">
+
+                    <h2>Hollow Knight: Silksong</h2>
+                    <p>Team Cherry</p>
+                    <p>•</p>
+                    <p>Sept. 4, 2025</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section class="image-scren">
+            <div class="ims-top">
+                <h2>Images & Screenshots</h2>
+            </div>
+
+            <div class="ims-bot">
+
+                <div class="cont-video" id="videoBox">
+                   
+                    <img src="../static/image/topic/tv1.webp" alt="Video Thumbnail">
+
+                   
+                    <div class="play-button"></div>
+
+                    
+                    <video id="myVideo" controls>
+                        <source
+                            src="https://assets.ign.com/videos/zencoder/2025/09/02/1920/bab7f761-1eef-454d-867d-ff312f618ea8-1756854300.mp4"
+                            type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="ims-img">
+                    <img src="../static/image/topic/t1.webp" alt="">
+                    <img src="../static/image/topic/t2.webp" alt="">
+                    <img src="../static/image/topic/t3.webp" alt="">
+                    <img src="../static/image/topic/t4.webp" alt="">
+                    <img src="../static/image/topic/t5.webp" alt="">
+                </div>
+
+            </div>
+
+        </section> -->
+
+        <section class="summery">
+            <div class="summ-top">
+                <h2>Summary</h2>
+            </div>
+            <div class="summ-bot">
+
+                <div class="sumb-about">
+                    <p>
+                        Hollow Knight: Silksong is the epic sequel to the award winning action-adventure of bugs and
+                        heroes. As the lethal hunter Hornet, journey to all-new lands, discover new powers, battle vast
+                        hordes of bugs and beasts and uncover ancient secrets tied to your nature and your past.
+                    </p>
+                </div>
+
+                <div class="sumb-devpub">
+                    <div class="sdp-devloper">
+                        <h3>Developers</h3>
+                        <p>Team Cherry</p>
+                    </div>
+                    <div class="sdp-publishers">
+                        <h3>Publishers</h3>
+                        <p>Team Cherry</p>
+                    </div>
+                </div>
+
+                <div class="sumb-release">
+                    <h3>Release Date</h3>
+                    <p>Sept. 4, 2025</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="let-news">
+            <div class="ltne-heding">
+                <h2>Hollow Knight: Silksong - Latest Contents</h2>
+            </div>
+            <div class="newn-card">
+                <div class="newnc-img">
+                    <img src="../static/image/gimg/game1.webp" alt="">
+                </div>
+                <div class="newnc-text">
+                    <h2>Hollow Knight: Silksong Global Release Times Confirmed</h2>
+                    <p>22 hours, 4 minutes - Nailed it.</p>
+                    <a href=""><i class="fa-solid fa-user"></i>Vikki Blake</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.getElementById("videoBox").addEventListener("click", function () {
+            const video = document.getElementById("myVideo");
+            this.querySelector("img").style.display = "none";   // hide thumbnail
+            this.querySelector(".play-button").style.display = "none"; // hide play button
+            video.style.display = "block";   // show video
+            video.play(); // autoplay
+        });
+    </script>
+</body>
+
+</html>

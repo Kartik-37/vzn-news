@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- main style -->
+    <link rel="stylesheet" href="../static/style.css">
+    <!-- font style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <!-- font awosome style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <title>VZN</title>
+</head>
+
+<body>
+    <aside id="sidebar">
+        <div class="himg">
+            <a href="{% url 'home' %}" class="mimg"><img src="../static/image/nimage/h3.png" alt="home"></a>
+
+        </div>
+        <div class="hcatagory">
+            <a href="{% url 'home' %}" class="ch"><i class="fa-solid fa-house"></i><span>Home</span></a>
+            <a href="{% url 'news' %}"><i class="fa-solid fa-newspaper"></i> <span>News</span></a>
+            <a href="{% url 'gaming' %}"><i class="fa-solid fa-gamepad"></i> <span>Gaming</span></a>
+            <a href="{% url 'tech' %}"><i class="fa-solid fa-microchip"></i> <span>Tech</span></a>
+            <a href="{% url 'cinema' %}"><i class="fa-solid fa-clapperboard"></i><span>Cinema</span></a>
+            <a href="{% url 'animng' %}"><i class="fa-solid fa-dragon"></i><span>Anime and Manga</span></a>
+            <a href="{% url 'science' %}"><i class="fa-solid fa-flask"></i><span>Science</span></a>
+            <a href="{% url 'comic' %}"><i class="fa-solid fa-book-open"></i><span>Comics</span></a>
+        </div>
+        <div class="serch">
+            <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
+            <form method="GET" action="{% url 'search' %}">
+                <input type="text" name="q" placeholder="Search..." value="{{query}}" required>
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+
+        </div>
+        <div class="lgrg">
+            <a href="" class="lg">Login</a>
+            <a href="" class="rg">Register</a>
+        </div>
+    </aside>
+
+    <a href="javascript:void(0);" class="bar" id="toggleBtn"><i class="fa-solid fa-chevron-right"></i></a>
+
+    <main>
+
+        <section class="mnav">
+            <a href="{% url 'home' %}" class="nimg"><img src="../static/image/nimage/h3.png" alt="home"></a>
+        </section>
+
+        <section class="liven">
+            <div class="lnimg">
+                <div class="lnimg-img">
+                    <img src="{{ live_news.image }}" alt="">
+                </div>
+                <a href="{% url 'detail' live_news.nid %}">
+                    <div class="lhedline">
+                    
+                    <h2>{{ live_news.title }}</h2>
+                    <p>{{ live_news.description }}</p>
+                </div>
+                </a>
+                
+            </div>
+
+            <div class="lnsnewa">
+
+                {% for h in highlights %}
+                <div class="lnsi1">
+                    <img src="{{ h.image }}" alt="">
+                    <div class="lnsi1-title">
+                        <a href="{% url 'detail' h.nid %}">
+                            <p>{{ h.title }}</p>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <!-- <div class="lnsi2">
+                    <img src="../static/image/mimg/stimg2.webp" alt="">
+                    <p>Lok Sabha Passes India’s New Online Gaming Bill That Bans Real Money Gaming; Promotes Esports and
+                        ‘Online Social Gaming’ [Update: Passed in Rajya Sabha]</p>
+                </div>
+                <div class="lnsi3">
+                    <img src="../static/image/mimg/stimg3.webp" alt="">
+                    <p>Indian Video Games Industry Backs Government Bill Separating Video Games from Real Money
+                        Platforms, Gambling and Betting</p>
+                </div>
+                <div class="lnsi4">
+                    <img src="../static/image/mimg/stimg4.webp" alt="">
+                    <p>Ghost of Yotei Trailer Confirms Free Legends Multiplayer DLC Coming in 2026Ghost of Yotei Trailer
+                        Confirms Free Legends Multiplayer DLC Coming in 2026</p>
+                </div> -->
+            </div>
+        </section>
+
+        <!-- <section class="latestn">
+            <h2>Biggest Reveals From gamescom ONL</h2>
+            <div class="ltn-card">
+                {% for i in highlights %}
+                <div class="ltn1">
+                    <img src="{{ i.image }}" alt="">
+                    <p>{{ i.title }}</p>
+                </div>
+                {% endfor %}
+                <div class="ltn1">
+                    <img src="../static/image/mimg/ltn2.webp" alt="">
+                    <p>Hollow Knight: Silksong Shows Up at Gamescom: Opening Night Live With Almost 30 Seconds of New
+                        Gameplay, as a Treat</p>
+                </div>
+                <div class="ltn1">
+                    <img src="../static/image/mimg/ltn3.webp" alt="">
+                    <p>Silent Hill f Gamescom Trailer Reveals Suzie Yeung as Hinako</p>
+                </div>
+                <div class="ltn1">
+                    <img src="../static/image/mimg/ltn4.webp" alt="">
+                    <p>FromSoftware’s Sekiro Gets the Anime Treatment via Crunchyroll in 2026</p>
+                </div>
+            </div>
+        </section> -->
+
+        <section class="todytn">
+            <h2>Today’s Top Stories</h2>
+            <div class="tdn-card">
+                {% for i in top_stories%}
+                <a href="{% url 'detail' i.nid %}">
+                <div class="tdn1">
+                    <img src="{{ i.image }}" alt="">
+
+                    <p>{{ i.title }}</p>
+                </div>
+                </a>
+                {% endfor %}
+                <!-- <div class="tdn1">
+                    <img src="../static/image/mimg/tdn2.webp" alt="">
+                    <p>Indian Video Games Industry Backs Government Bill Separating Video Games from Real Money Platforms, Gambling and Betting</p>
+                </div>
+                <div class="tdn1">
+                    <img src="../static/image/mimg/tdn3.webp" alt="">
+                    <p>Nvidia GeForce Now to Launch in India This November</p>
+                </div>
+                <div class="tdn1">
+                    <img src="../static/image/mimg/tdn4.webp" alt="">
+                    <p>Krafton India To Host Two New BGMI Esports Tournaments in the Second Half of 2025: Sources</p>
+                </div>
+                <div class="tdn1">
+                    <img src="../static/image/mimg/tdn5.webp" alt="">
+                    <p>Forza Horizon 6 Location Leaked by Car Import Company, Fans Believe</p>
+                </div>
+                <div class="tdn1">
+                    <img src="../static/image/mimg/tdn6.webp" alt="">
+                    <p>HP Omen 16 Gaming Laptop Launched in India With AMD Ryzen AI and Intel Core Ultra CPUs, With up to GeForce RTX 5070 Ti GPU</p>
+                </div>
+                <div class="tdn1">
+                    <img src="../static/image/mimg/tdn7.webp" alt="">
+                    <p>Netflix’s KPop Demon Hunters Reaches 210 Million Views, Becomes Second Most-Watched Film on the Platform After Red Notice</p>
+                </div>
+                <div class="tdn1">
+                    <img src="../static/image/mimg/tdn8.webp" alt="">
+                    <p>Florence Pugh Rumoured to Return as Yelena Belova in Marvel’s Spider-Man: Brand New Day</p>
+                </div> -->
+            </div>
+        </section>
+
+        <section class="newn">
+            <div class="newn-heding">
+                <h2>Latest</h2>
+            </div>
+            {% for i in latest %}
+            <div class="newn-card">
+                <div class="newnc-img">
+                    <img src="{{ i.image }}" alt="">
+                </div>
+
+                <div class="newnc-text">
+                    <a href="{% url 'detail' i.nid %}"><h2>{{ i.title }}</h2></a>
+                    <a href="{% url 'detail' i.nid %}"><p>{{ i.time|timesince }} - {{ i.description|default:"No description available" }}</p></a>
+                    <span><i class="fa-solid fa-user"></i>{{ i.author|default:"Unknown" }}</span>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- <div class="newn-card">
+                <div class="newnc-img">
+                    <img src="../static/image/mimg/newn2.webp" alt="">
+                </div>
+                <div class="newnc-text">
+                    <h2>It’s Official: Superman Is the First Superhero Movie of 2025 to Fly Past $600M at the Global Box Office, While The Fantastic Four: First Steps Inches Towards $500M</h2>
+                    <p>16 hours, 20 minutes - Up and away.</p>
+                    <a href=""><i class="fa-solid fa-user"></i>Wesley Yin-Poole</a>
+                </div>
+            </div>
+
+            <div class="newn-card">
+                <div class="newnc-img">
+                    <img src="../static/image/mimg/newn3.webp" alt="">
+                </div>
+                <div class="newnc-text">
+                    <h2>Metal Gear Solid 3: The Complicated History of All 5 Versions Explained</h2>
+                    <p>18 hours, 4 minutes - Which is the real, correct version of Snake Eater?</p>
+                    <a href=""><i class="fa-solid fa-user"></i>Charlie Lopresto</a>
+                </div>
+            </div> -->
+
+        </section>
+
+    </main>
+
+    <script>
+        const sidebar = document.getElementById("sidebar");
+        const toggleBtn = document.getElementById("toggleBtn");
+        const icon = toggleBtn.querySelector("i");
+
+        toggleBtn.addEventListener("click", () => {
+            // Toggle between showing and hiding on mobile
+            sidebar.classList.toggle("hidden");
+
+            if (sidebar.classList.contains("hidden")) {
+                icon.classList.remove("fa-chevron-right");
+                icon.classList.add("fa-chevron-left");
+            } else {
+                icon.classList.remove("fa-chevron-left");
+                icon.classList.add("fa-chevron-right");
+            }
+        });
+    </script>
+</body>
+
+</html>
