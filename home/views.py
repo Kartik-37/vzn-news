@@ -639,6 +639,7 @@ def search(request):
             news = []
         news_data = [
                 {
+                "nid":n.nid,
                 "title": n.title,
                 "description": n.description,
                 "url": n.url,
